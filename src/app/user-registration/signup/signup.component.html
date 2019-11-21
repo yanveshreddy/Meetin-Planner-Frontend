@@ -1,0 +1,106 @@
+<div class="container-fluid">
+  <h1 class="header">Meeting Planner</h1>
+  <div class="row">
+    <div class="col-md-2 col-lg-2 col-xl-7">
+
+    </div>
+    <div class="col-md-8 col-lg-8 col-xl-4">
+      <div class="card">
+        <div class="card-body">
+          <div class="card-title">
+            sign up
+          </div>
+          <form >
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <!-- <label for="">firstname</label> -->
+                  <input type="text" class="form-control" id="firstName" name="firstName" [(ngModel)]="firstName"
+                    placeholder="firstname">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <!-- <label for="">lastname</label> -->
+                  <input type="text" class="form-control" id="lastName" name="lastName" [(ngModel)]="lastName"
+                    placeholder="lastname">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <!-- <label for="">userName</label> -->
+                  <input type="text" class="form-control" id="userName" name="userName" [(ngModel)]="userName"
+                    placeholder="username">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <!-- <label for="">Country</label> -->
+                  <select class="form-control" (change)="onChange($event)">
+                    <option selected [value]="'none'">country</option>
+                    <option *ngFor="let country of countries | keyvalue" [value]="country.key">{{country.value}}
+                    </option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+
+              <div class="col-md-3">
+                <div class="form-group">
+                  <!-- <label for="">Country Code</label> -->
+                  <div class="form-control">{{countryCode}}</div>
+                </div>
+              </div>
+              
+              <div class="col-md-9">
+                <div class="form-group">
+                  <!-- <label for="">mobile</label> -->
+                  <input type="number" class="form-control" id="mobileNumber" name="mobileNumber"
+                    [(ngModel)]="mobileNumber" placeholder="mobilenumber" pattern="/[0-9\+\-\ ]/" minlength="10" maxlength="10" >
+                </div>
+              </div>
+
+            </div>
+            <div class="form-group">
+              <!-- <label for="">Email</label> -->
+              <input type="email" class="form-control" id="email" name="email" [(ngModel)]="email"
+                placeholder="email">
+            </div>
+            <div class="form-group">
+              <!-- <label for="">password</label> -->
+              <input type="password" class="form-control" id="password" name="password" [(ngModel)]="password"
+                placeholder="password">
+            </div>
+            <div class="form-group">
+                <!-- <label for="">password</label> -->
+                <input type="password" class="form-control" id="confirmpassword" name="confirmpassword" [(ngModel)]="confirmpassword"
+                  placeholder="confirmpassword">
+              </div>
+            <div class="card-footer1">
+              <a [routerLink]="['/signin']" style="font-size:16px;"><small>already registered? </small></a>
+            </div>
+            <div class="btn-alignment">
+              <p class="loader" *ngIf="signuploader==false"></p>
+              <button type="submit" class="btn btn-primary" (click)="signup()">Sign up</button>
+            </div>
+          </form>
+
+
+
+        </div>
+
+      </div>
+    </div>
+    <div class="col-md-2 col-lg-2 col-xl-1">
+
+    </div>
+  </div>
+  <div class="container footer">
+    <div class="row">
+
+    </div>
+  </div>
+</div>

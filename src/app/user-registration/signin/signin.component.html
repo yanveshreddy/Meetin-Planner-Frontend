@@ -1,0 +1,55 @@
+<div class="container-fluid">
+
+    <h1 class="header">Meeting Planner</h1>
+
+    <div class="row">
+        <div class="col-md-2 col-lg-2 col-xl-7">
+            
+        </div>
+
+        <div class="col-md-8 col-lg-8 col-xl-4">
+            <div class="card">
+                <div class="card-body">
+                    <div class="card-title">
+                        <i class="fas fa-user-secret"></i>
+                        sign in
+                    </div>
+                    <form>
+
+                        <div class="form-group">
+                            <label for="">Email</label>
+                            <input type="email" class="form-control" id="exampleInputEmail4" name="email"
+                                [(ngModel)]="email" placeholder="email">
+                        </div>
+                        <div class="form-group">
+                            <label for="">password</label>
+                            <input type="password" class="form-control" id="exampleInputEmail5" name="password"
+                                [(ngModel)]="password" placeholder="password">
+                        </div>
+                        <div class="btn-alignment">
+                            <p class="loader" *ngIf="signuploader==false"></p>
+                            <button type="submit" class="btn btn-primary" (click)="signin()">Sign in</button>
+                        </div>
+                    </form>
+
+                </div>
+
+                <div class="card-footer1">
+                    <a [routerLink]="['/signup']">don't have an account?</a>
+
+                    <a [routerLink]="['/forgot-password']">forgot password?</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2 col-lg-2 col-xl-1"></div>
+
+    </div>
+    <div class="container footer">
+        <div class="row">
+           
+        </div>
+
+
+
+    </div>
+</div>

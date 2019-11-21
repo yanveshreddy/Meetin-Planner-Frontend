@@ -1,0 +1,131 @@
+
+.container-fluid {
+    background-image: url('src/assets/images/undraw_schedule_pnbk.png');
+    /* background:linear-gradient(to right,white,blue) photo-1513151233558-d860c5398176.jpg;meeting-planner\src\assets\images\  */
+    background-size: 62%;
+    background-position-x: left;
+    background-position-y: top;
+    background-repeat:no-repeat;
+    height: auto;
+  
+}
+.header {
+    text-align: center;
+    color:rgb(48, 148, 143);
+    text-transform:uppercase;
+    text-shadow:2px 2px black;
+    font-family:exodus-demo-striped;
+}
+.card {
+    /* background:linear-gradient(to right,blue,white);  */
+    background-size:cover;
+    background-position:top;
+    background-repeat:no-repeat;
+    height:auto;
+    margin-top:30px;
+    margin-left:auto;
+    margin-right:auto;
+    padding:20px;
+}
+
+label {
+    color:white;
+    text-transform:uppercase;
+}
+.btn-primary {
+    border-radius:40px;
+    text-align: center;
+    background:linear-gradient(to right,white,#33847c);
+    border-color:white;
+    margin-top:10px;
+    width:100px;
+    color:black;
+}
+.btn-alignment {
+    width:100%;
+    text-align:center;
+}
+.btn-primary:hover {
+    background:linear-gradient(to right,#33847c,white);
+}
+.card-title {
+    /* color:white; */
+    text-align:left;
+    font-family:exodus-demo-striped;
+    color:rgb(185, 190, 190);
+    font-size:1rem;
+    text-transform: uppercase;
+    
+}
+.card-body {
+    border-bottom:1px solid white;
+}
+
+small {
+    text-transform: capitalize;
+}
+
+.footer {
+   margin-top:100px;
+   width:100%;
+  }
+ 
+  .card-footer1{
+    color: #05302b;
+    text-align: right;
+      font-size:16px;
+  }
+
+  .loader {
+    text-align: center;
+    border-left:2px solid #33847c;
+    border-right:2px solid #33847c;
+    border-bottom:2px solid white;
+    border-top:2px solid white;
+    border-radius:30px;
+    width:30px;
+    margin-left:auto;
+    margin-right: auto;
+    height:30px;
+    animation:rotate 1s infinite linear;
+  }
+
+ @keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}
+.form-control{
+  border-radius:20px;
+}
+.form-control:focus, textarea:focus, select:focus{
+  border-radius:20px;
+  outline:none;
+}
+button:focus {outline:0;}
+
+@media screen and (max-width: 480px) {
+  .container-fluid {
+    background-image: url('src/assets/images/undraw_schedule_pnbk.png');
+    /* background:linear-gradient(to right,white,blue) photo-1513151233558-d860c5398176.jpg;meeting-planner\src\assets\images\  */
+    background-size: 62%;
+    background-position: left;
+   
+    background-repeat:no-repeat;
+    height: auto;
+  
+}}
+@media screen and (min-width: 480px) and (max-width: 1080px) {
+  .container-fluid {
+    background-image: url('src/assets/images/undraw_schedule_pnbk.png');
+    /* background:linear-gradient(to right,white,blue) photo-1513151233558-d860c5398176.jpg;meeting-planner\src\assets\images\  */
+    background-size: 62%;
+    background-position: center;
+   
+    background-repeat:no-repeat;
+    height: auto;
+  
+}}
