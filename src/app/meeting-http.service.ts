@@ -69,12 +69,12 @@ export class MeetingHttpService {
   //sendcode end
 
   //resetpassword code start
-  public resetpassword = (data): any => {
+  public resetPassword = (data): any => {
     let params = new HttpParams()
       .set('password', data.password)
-      .set('resetPasswordToken', data.resetId)
-    let datas = this.http.post(`${this.baseurl}/resetpassword`, params);
-    return datas;
+      .set('resetPasswordToken', data.resetPasswordToken)
+      return this.http.post(`${this.baseurl}/api/v1/users/resetPassword`, params);
+     
   }
   //resetpassword code end
   

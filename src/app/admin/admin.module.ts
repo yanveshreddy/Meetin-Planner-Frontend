@@ -10,7 +10,7 @@ import { RouterModule } from '@angular/router';
   imports: [
     CommonModule,
     RouterModule.forChild ([
-      {path:'admindashboard',component:AdminDashComponent},
+      {path:'admindashboard/:userId',component:AdminDashComponent},
       // {path:'createevent/:userId',component:AdminCreateEventComponent},
       // {path:'editevent/:eventId',component:AdminEditEventComponent}
      ])

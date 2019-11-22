@@ -14,6 +14,14 @@ import { AdminModule } from './admin/admin.module';
 import { UserRegistrationModule } from './user-registration/user-registration.module';
 
 import { SigninComponent} from './user-registration/signin/signin.component'
+import { UserModule } from './user/user.module';
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/moment';
+import * as moment from 'moment';
+
+export function momentAdapterFactory() {
+  return adapterFactory(moment);
+};
 
 @NgModule({
   declarations: [
@@ -31,13 +39,14 @@ import { SigninComponent} from './user-registration/signin/signin.component'
     }),
     UserRegistrationModule,
     AdminModule,
-  
+    UserModule,
     RouterModule.forRoot([
       {path:'signin',component:SigninComponent,pathMatch:'full'},
       {path:'',redirectTo:'signin',pathMatch:'full'},
       {path:"*",component:SigninComponent},
       {path:"**",component:SigninComponent},
-    ])
+    ]),
+    CalendarModule.forRoot({ provide: DateAdapter, useFactory: momentAdapterFactory })
   ],
   providers: [],
   bootstrap: [AppComponent]

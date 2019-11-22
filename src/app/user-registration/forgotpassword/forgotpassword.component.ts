@@ -10,11 +10,11 @@ import { Router } from '@angular/router';
 })
 export class ForgotpasswordComponent implements OnInit {
 
-  public signuploader: boolean;
+  //public signuploader: boolean;
   public email: any;
   public resetPasswordToken: any;
   public password: any;
-  public signinloader: boolean;
+  //public signinloader: boolean;
   constructor(public toastr: ToastrService, public service: MeetingHttpService, public router: Router) { }
 
   ngOnInit() {
@@ -25,14 +25,15 @@ export class ForgotpasswordComponent implements OnInit {
       this.toastr.warning('Enter Your Email');
     }
     else {
-      this.signuploader = false;
+      // this.signuploader = false;
       this.service.sendResetToken(this.email).subscribe(
         data => {
-          this.signuploader = true;
+          // this.signuploader = true;
           this.toastr.success(data.message);
+
         },
         err => {
-          this.signuploader = true;
+          // this.signuploader = true;
           this.toastr.error('some error occured');
         }
       )
@@ -49,18 +50,22 @@ export class ForgotpasswordComponent implements OnInit {
       this.toastr.warning('Enter Your password');
     }
     else {
-      this.signinloader = false;
+      // this.signinloader = false;
       let data = {
         password: this.password,
         resetPasswordToken: this.resetPasswordToken
       }
-      this.service.resetpassword(data).subscribe(
+
+      this.service.resetPassword(data).subscribe(
         data => {
-          this.signinloader = true;
+          // this.signinloader = true;
           this.toastr.success(data.message);
+          setTimeout(()=>{
+            this.router.navigate(['/signin']);
+          },1000)
         },
         err => {
-          this.signinloader = true;
+          // this.signinloader = true;
           this.toastr.error('some error occured');
         }
       )

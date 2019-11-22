@@ -20,7 +20,7 @@ export class SigninComponent implements OnInit {
 
   ngOnInit() {
 
-    this.toastr.success("Welcome");
+   // this.toastr.success("Welcome");
   }
 
   public signin = () => {
@@ -32,34 +32,35 @@ export class SigninComponent implements OnInit {
     }
     else {
 
-      let data = {
+      let postingdata = {
         email: this.email,
         password: this.password
       }
-      this.signuploader = false;
-      this.service.signinfunction(data).subscribe(
-        data => {
+     // this.signuploader = false;
+      this.service.signinfunction(postingdata).subscribe(
+        result => {
 
-          if (data.error == false) {
-            this.signuploader = true;
-            this.toastr.success(data.message);
+          if (result.error == false) {
+            //this.signuploader = true;
+            console.log(result);
+            this.toastr.success(result.message);
 
-            Cookie.set('authToken', data.data.authToken);
+            Cookie.set('authToken', result.data.authToken);
 
-            Cookie.set('userId', data.data.userDetails.userId);
+            Cookie.set('userId', result.data.userDetails.userId);
 
-            Cookie.set('userName', data.data.userDetails.firstName + ' ' + data.data.userDetails.lastName);
+            Cookie.set('userName', result.data.userDetails.firstName + ' ' + result.data.userDetails.lastName);
 
-            if (data.data.userDetails.isAdmin == true) {
-              this.router.navigate(['/admindashboard']);
-            }
-            else if (data.data.userDetails.isAdmin == false) {
-              this.router.navigate(['/userdashboard', data.data.userDetails.userId]);
+            if (result.data.userDetails.isAdmin == true) {
+              this.router.navigate(['/admindashboard', result.data.userDetails.userId]);         
+               }
+            else if (result.data.userDetails.isAdmin == false) {
+              this.router.navigate(['/userdashboard', result.data.userDetails.userId]);
             }
           }
           else {
             this.signuploader = true;
-            this.toastr.error(data.message);
+            this.toastr.error(result.message);
           }
         }, err => {
 
