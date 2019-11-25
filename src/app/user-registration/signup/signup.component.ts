@@ -4,7 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 import { MeetingHttpService } from 'src/app/meeting-http.service';
 import { Router } from '@angular/router';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
-import {CustomValidator} from '../../shared/validation'
+// import {CustomValidator} from '../../shared/validation'
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',

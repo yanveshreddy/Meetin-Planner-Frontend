@@ -90,15 +90,15 @@ export class CreateMeetingComponent implements OnInit {
           this.toastr.warning('choose endTime');
         } 
         
-        else if(starting >= ending) {
+        else if(this.startDate > this.endDate) {
           this.toastr.warning("The end date and time has to be in future than the start date and time");
         }
         else{
          // this.signuploader=false;
          let data = {
 
-            startDate:this.startDate,
-            endDate:this.endDate,
+            start:this.startDate,
+            end:this.endDate,
             startHour:this.startTime.hour,
             startMinute:this.startTime.minute,
             endHour:this.endTime.hour,

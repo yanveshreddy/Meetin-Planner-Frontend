@@ -1,105 +1,110 @@
 <div class="container-fluid">
-    <div class="row">  
-        <div class="displayBlockMobile" style="width:99.999%;z-index:1">
-   
-                <nav class="navbar navbar-expand-lg navbar-dark" style="background:black">
-                   
-                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
-                           
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
-                        <a class="navbar-brand"><img src="./../../../assets/iron_man.jpg" alt=""></a>
-                     
-                        <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
-                          <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                            <li class="nav-item">
-                                <a class="nav-link" [routerLink]="['/home']">Admin Home</a>
-                              </li>
-                              <li class="nav-item">
-                                <a class="nav-link" [routerLink]="['/admindashboard',userId]">Dashboard</a>
-                              </li>
-                          </ul>
-                          <button class="btn btn-primary" (click)="logout()">logout</button>
-                        </div>
-                      </nav>
-                </div>
-                </div>
-                </div>
+  <div class="row">
+    <div class="displayBlockMobile" style="width:99.999%;z-index:1">
 
-                <div class="container-fluid" style="margin-top:40px">
-                    <div class="row">
-                        <div class="col-md-2">
+      <nav class="navbar navbar-expand-lg navbar-dark" style="background:#33847c">
 
-                        </div>
-                        <div class="col-md-8">
-                            <div class="card">
-                                <div class="card-header">
-                                  Plan Your Meeting 
-                                </div>
-                                <div class="card-body">
-                                    <form #createform="ngForm">
-                                        <div class="form-group">
-                                          <label for="exampleInputEmail1">Title:</label>
-                                          <input type="email" class="form-control" [(ngModel)]="title" name="title"  id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Title">
-                                       
-                                        </div>
-                                        <div class="form-group">
-                                          <label for="exampleInputPassword2">Purpose:</label>
-                                          <input type="text" class="form-control" [(ngModel)]="purpose" name="purpose" id="exampleInputPassword2" placeholder="Purpose">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="exampleInputPassword1">color:</label>&nbsp; &nbsp;
-                                            <input type="color" class="color" [(ngModel)]="color" name="purpose" id="exampleInputPassword3">
-                                          </div>
-                                          <div class="form-group">
-                                            <div class="input-group">
-                                                <label>Start Date: &nbsp;</label>
-                                                <input class="form-control" type="date" placeholder="yyyy-mm-dd" name="startDate" ngbDatepicker  #d="ngbDatepicker" [(ngModel)]="startDate"  
-                                                   required>
-                                                <div class="input-group-append">
-                                                  <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button">
-                                                    <i class="fa fa-calendar"></i>
-                                                  </button>
-                                                </div>
-                                              </div>
-                                              <br>
-                                          </div>
-                                          <div class="form-group">
-                                            <label>Start Time:</label>
-                                            <ngb-timepicker   [(ngModel)]="startTime"  name="startTime" [meridian]="true" required></ngb-timepicker>
-                                          </div>
-                                          <div class="form-group">
-                                            <div class="input-group">
-                                                <label>End Date: &nbsp;</label>
-                                                <input class="form-control" placeholder="yyyy-mm-dd" type="date"  name="endDate" ngbDatepicker  #end="ngbDatepicker"  [(ngModel)]="endDate"
-                                                   required>
-                                                <div class="input-group-append">
-                                                  <button class="btn btn-outline-secondary calendar" (click)="end.toggle()" type="button">
-                                                    <i class="fa fa-calendar"></i>
-                                                  </button>
-                                                </div>
-                                              </div>
-                                              <br>
-                                          </div>
-                                          <div class="form-group">
-                                            <label>End Time:</label>
-                                            <ngb-timepicker [(ngModel)]="endTime" name="endTime" [meridian]="true" required></ngb-timepicker>
-                                          </div>
-                                          <div class="form-group">
-                                            <label for="exampleInputEmail1">Location:</label>
-                                            <input type="location" class="form-control" [(ngModel)]="Location" name="title"  id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Title">
-                                         
-                                          </div>
-                                          <p class="loader" *ngIf="signuploader==false"></p>
-                                        <button type="submit" class="btn btn-primary" [disabled]="!createform.valid" (click)="createevent()">Submit</button>
-                                      </form>
-                                  
-                                </div>
-                               
-                              </div>
-                        </div>
-                        <div class="col-md-2">
-                            
-                        </div>
-                    </div>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03"
+          aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand"><img src="./../../../assets/images/logo.png" alt=""></a>
+
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+          <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" [routerLink]="['/home']">Admin Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" [routerLink]="['/admindashboard',userId]">Dashboard</a>
+            </li>
+          </ul>
+          <button class="btn btn-primary" (click)="logout()">logout</button>
+        </div>
+      </nav>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid" style="margin-top:40px">
+  <div class="row">
+    <div class="col-md-2">
+
+    </div>
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-header">
+          Plan Your Meeting
+        </div>
+        <div class="card-body">
+          <form #createform="ngForm">
+            <div class="form-group">
+              <label for="exampleInputEmail1">Title:</label>
+              <input type="email" class="form-control" [(ngModel)]="title" name="title" id="exampleInputEmail1"
+                aria-describedby="emailHelp" placeholder="Title">
+
+            </div>
+            <div class="form-group">
+              <label for="exampleInputPassword2">Purpose:</label>
+              <input type="text" class="form-control" [(ngModel)]="purpose" name="purpose" id="exampleInputPassword2"
+                placeholder="Purpose">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputPassword1">color:</label>&nbsp; &nbsp;
+              <input type="color" class="color" [(ngModel)]="color" name="purpose" id="exampleInputPassword3">
+            </div>
+            <div class="form-group">
+              <div class="input-group">
+                <label>Start Date: &nbsp;</label>
+                <input class="form-control" type="date" placeholder="yyyy-mm-dd" name="startDate" ngbDatepicker
+                  #d="ngbDatepicker" [(ngModel)]="startDate" required>
+                <div class="input-group-append">
+                  <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button">
+                    <i class="fa fa-calendar"></i>
+                  </button>
                 </div>
+              </div>
+              <br>
+            </div>
+            <div class="form-group">
+              <label>Start Time:</label>
+              <ngb-timepicker [(ngModel)]="startTime" name="startTime" [meridian]="true" required></ngb-timepicker>
+            </div>
+            <div class="form-group">
+              <div class="input-group">
+                <label>End Date: &nbsp;</label>
+                <input class="form-control" placeholder="yyyy-mm-dd" type="date" name="endDate" ngbDatepicker
+                  #end="ngbDatepicker" [(ngModel)]="endDate" required>
+                <div class="input-group-append">
+                  <button class="btn btn-outline-secondary calendar" (click)="end.toggle()" type="button">
+                    <i class="fa fa-calendar"></i>
+                  </button>
+                </div>
+              </div>
+              <br>
+            </div>
+            <div class="form-group">
+              <label>End Time:</label>
+              <ngb-timepicker [(ngModel)]="endTime" name="endTime" [meridian]="true" required></ngb-timepicker>
+            </div>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Location:</label>
+              <input type="location" class="form-control" [(ngModel)]="Location" name="title" id="exampleInputEmail1"
+                aria-describedby="emailHelp" placeholder="Title">
+
+            </div>
+            <p class="loader" *ngIf="signuploader==false"></p>
+            <button type="submit" class="btn btn-primary" [disabled]="!createform.valid"
+              (click)="createevent()">Submit</button>
+          </form>
+
+        </div>
+
+      </div>
+    </div>
+    <div class="col-md-2">
+
+    </div>
+  </div>
+</div>

@@ -13,9 +13,9 @@
                         <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
                           <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                             <li class="nav-item">
-                                <a class="nav-link" [routerLink]="['/home']">Admin Home</a>
+                                <a class="nav-link" [routerLink]="['/adminhome']">Admin Home</a>
                               </li>
-                              <li class="nav-item">
+                              <li class="nav-item" *ngIf='userId'>
                                 <a class="nav-link" [routerLink]="['/admindashboard',userId]">Dashboard</a>
                               </li>
                           </ul>
@@ -25,7 +25,7 @@
                 </div>
                 </div>
                 </div>
-                <div class="delete"><button (click)="deleteevent()" class="deletebutton"><i class="fas fa-trash-alt">Delete</i></button></div>
+                <div class="delete"><button (click)="deleteMeeting()" class="deletebutton"><i class="fas fa-trash-alt">Delete</i></button></div>
                              
                 <div class="container-fluid" style="margin-top:40px">
                     <div class="row">
@@ -40,21 +40,21 @@
                                     <form>
                                         <div class="form-group">
                                           <label for="exampleInputEmail1">Title:</label>
-                                          <input type="email" class="form-control" [(ngModel)]="event.title" name="title"  id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Title">
+                                          <input type="email" class="form-control" [(ngModel)]="meeting.title" name="title"  id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Title">
                                        
                                         </div>
                                         <div class="form-group">
                                           <label for="exampleInputPassword2">Purpose:</label>
-                                          <input type="text" class="form-control" [(ngModel)]="event.purpose" name="purpose" id="exampleInputPassword2" placeholder="Purpose">
+                                          <input type="text" class="form-control" [(ngModel)]="meeting.purpose" name="purpose" id="exampleInputPassword2" placeholder="Purpose">
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputPassword1">color:</label>&nbsp; &nbsp;
-                                            <input type="color" class="color" [(ngModel)]="event.color" name="color" id="exampleInputPassword3">
+                                            <input type="color" class="color" [(ngModel)]="meeting.color" name="color" id="exampleInputPassword3">
                                           </div>
                                           <div class="form-group">
                                             <div class="input-group">
                                                 <label>Start Date: &nbsp;</label>
-                                                <input class="form-control" placeholder="yyyy-mm-dd"  type="date" [(ngModel)]="event.start" name="startDate" ngbDatepicker  #d="ngbDatepicker"
+                                                <input class="form-control" placeholder="yyyy-mm-dd"  type="date" [(ngModel)]="meeting.startDate" name="startDate" ngbDatepicker  #d="ngbDatepicker"
                                                    required>
                                                 <div class="input-group-append">
                                                   <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button">
@@ -71,7 +71,7 @@
                                           <div class="form-group">
                                             <div class="input-group">
                                                 <label>End Date: &nbsp;</label>
-                                                <input class="form-control" placeholder="yyyy-mm-dd" type="date" name="startDate" ngbDatepicker  #end="ngbDatepicker"  [(ngModel)]="event.end"
+                                                <input class="form-control" placeholder="yyyy-mm-dd" type="date" name="startDate" ngbDatepicker  #end="ngbDatepicker"  [(ngModel)]="meeting.endDate"
                                                    required>
                                                 <div class="input-group-append">
                                                   <button class="btn btn-outline-secondary calendar" (click)="end.toggle()" type="button">
@@ -87,7 +87,7 @@
                                           </div>
                                           <div class="form-group">
                                             <label for="exampleInputEmail1">Location:</label>
-                                            <input type="location" class="form-control" [(ngModel)]="event.location" name="location"  id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Title">
+                                            <input type="location" class="form-control" [(ngModel)]="meeting.location" name="location"  id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Title">
                                          
                                           </div>
                                           <p class="loader" *ngIf="signuploader==false"></p>

@@ -17,18 +17,20 @@ import { Cookie } from 'ng2-cookies/ng2-cookies';
 })
 export class UpdateMeetingComponent implements OnInit {
 
-  public eventId: string;
+  public meetingId: string;
   public title: any;
   public startTime: { hour: any; minute: any; };
   public endTime: { hour: any; minute: any; };
   public userId: any;
-  public event: any;
+  public meeting: any;
   public adminName: any;
-  public signuploader: boolean;
+ // public signuploader: boolean;
   public authToken: string;
 
   constructor(public socketService:SocketService,public toastr: ToastrService,public service:MeetingHttpService,public router:Router,public _route:ActivatedRoute,private config:NgbDatepickerConfig) {
-    this.eventId =this._route.snapshot.paramMap.get('eventId');
+   
+    this.meetingId =this._route.snapshot.paramMap.get('meetingId');
+    
     this.adminName=Cookie.get('userName');
     this.authToken=Cookie.get('authToken');
     //configuring Datepicker
@@ -46,52 +48,53 @@ export class UpdateMeetingComponent implements OnInit {
   }
   
 
-  //get event code start
+  //get meeting code start
   public getSingleMeeting=()=>{
-    this.service.getSingleMeeting(this.eventId,this.authToken).subscribe(
+    this.service.getSingleMeeting(this.meetingId,this.authToken).subscribe(
       data=>{
+
         let x=data['data']
-        x.start=new Date(x.start)
-        x.end=new Date(x.end);
+        x.startDate=new Date(x.startDate)
+        x.endDate=new Date(x.endDate);
         this.startTime={hour:x.startHour,minute:x.startMinute}
         this.endTime={hour:x.endHour,minute:x.endMinute}
         this.userId=x.userId
         this.title=x.title
         this.adminName=x.adminName
-        this.event = data['data'];
+        this.meeting = data['data'];
       },
       err=>{
         this.toastr.error('some error occured')
       }
     )
   }
-  //get event code end
+  //get meeting code end
 
 
   //edit code is start
   public updateMeeting=()=>{
-    this.signuploader=false;
-    this.event.startHour=this.startTime.hour
-    this.event.startMinute=this.startTime.minute
+  //  this.signuploader=false;
+    this.meeting.startHour=this.startTime.hour
+    this.meeting.startMinute=this.startTime.minute
 
-   this.event.endHour=this.endTime.hour
-   this.event.endMinute=this.endTime.minute
+   this.meeting.endHour=this.endTime.hour
+   this.meeting.endMinute=this.endTime.minute
 
-   this.service.updateMeeting(this.event,this.authToken).subscribe(
+   this.service.updateMeeting(this.meeting,this.authToken).subscribe(
      data=>{
-      this.signuploader=true;
+    //  this.signuploader=true;
       this.router.navigate(['/admindashboard',this.userId]);
       this.toastr.success(data.message);
       let details={
         adminName:this.adminName,
         userId:this.userId,
-        eventId:this.eventId
+        meetingId:this.meetingId
     }
       this.socketService.addeditnotify(details);
       this.updateMeetingMailNotification();
      },
      err=>{
-      this.signuploader=true;
+     // this.signuploader=true;
        this.toastr.error('some error occured');
      }
    )
@@ -102,18 +105,18 @@ export class UpdateMeetingComponent implements OnInit {
   //delete code is start
  public deleteMeeting=()=>{
    
-   this.service.deleteMeeting(this.eventId,this.authToken).subscribe(
+   this.service.deleteMeeting(this.meetingId,this.authToken).subscribe(
      
      data=>{
-      this.router.navigate(['/admindashboard',this.userId]);
        this.toastr.success(data.message);
        let details={
         adminName:this.adminName,
         userId:this.userId,
-        eventId:this.eventId
+        meetingId:this.meetingId
     }
       this.socketService.adddeletenotify(details);
        this.deleteMeetingMailNotification();
+       this.router.navigate(['/admindashboard',this.userId]);
      },
      err=>{
        this.toastr.error('some error occured');

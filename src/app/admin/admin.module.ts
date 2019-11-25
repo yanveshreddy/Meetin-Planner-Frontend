@@ -31,7 +31,7 @@ import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
       {path:'adminhome',component:AdminHomeComponent},
       {path:'admindashboard/:userId',component:AdminDashComponent},
       {path:'createmeeting/:userId',component:CreateMeetingComponent},
-      {path:'updatemeeting/:eventId',component:UpdateMeetingComponent}
+      {path:'updatemeeting/:meetingId',component:UpdateMeetingComponent}
       // {path:'createevent/:userId',component:AdminCreateEventComponent},
       // {path:'editevent/:eventId',component:AdminEditEventComponent}
      ])

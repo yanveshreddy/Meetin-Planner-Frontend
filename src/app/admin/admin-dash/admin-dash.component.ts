@@ -81,6 +81,7 @@ function endOfPeriod(period: CalendarPeriod, date: Date): Date {
   styleUrls: ['./admin-dash.component.css']
 })
 export class AdminDashComponent implements OnInit {
+
   public userId: any;
   public p: Number = 1;
   public count: Number = 5;
@@ -90,13 +91,20 @@ export class AdminDashComponent implements OnInit {
 
   viewDate: Date = new Date();
  
-  events:any;
+  events:Array<CalendarEvent>=[];
+  meetings:any;
   activeDayIsOpen: boolean = true;
   start: string;
   end: string;
-  noevent: any;
+  nomeeting: any;
   event: any;
   public authToken: string;
+  
+  // modalData: {
+  //   action: string;
+  //   event: CalendarEvent;
+  // };
+
   
 
 
@@ -114,12 +122,9 @@ export class AdminDashComponent implements OnInit {
   
  
 
-  dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
+  dayClicked({ date, events}: { date: Date; events: CalendarEvent[] }): void {
     if (isSameMonth(date, this.viewDate)) {
-      if (
-        (isSameDay(this.viewDate, date) && this.activeDayIsOpen === true) ||
-        events.length === 0
-      ) {
+      if ((isSameDay(this.viewDate, date) && this.activeDayIsOpen === true) || events.length === 0) {
         this.activeDayIsOpen = false;
       } else {
         this.activeDayIsOpen = true;
@@ -185,33 +190,47 @@ export class AdminDashComponent implements OnInit {
       }
     }
 
+    // handleEvent(action: string, event: CalendarEvent): void {
+    //   this.modalData = { event, action };
+    //   this.modal.open(this.modalContent, { size: 'lg' });
+    // }
 
     //getAllMeetingsByUser code start
     public getAllMeetingsByUser=()=>{
-      this.service.getAllMeetingsByUser(this.userId,this.authToken).subscribe( data => {
-        this.event=data.data;
+      this.service.getAllMeetingsByUser(this.userId,this.authToken).subscribe( result => {
+
+        this.event=result.data;
         if(this.event==null){
-              this.noevent=0;
+              this.nomeeting=0;
         }
         else {
-          this.noevent=1;
-      for(let x of data['data']){
-        x.start=startOfDay(new Date(x.start))
-        x.start.setHours(x.startHour,x.startMinute)
-        x.end=endOfDay(new Date(x.end))
-        x.end.setHours(x.endHour,x.endMinute)
-          x.color={primary:x.color}
-          var startdate = new Date(x.start),
-          month = ("0" + (startdate.getMonth() + 1)).slice(-2),
-          day = ("0" + startdate.getDate()).slice(-2);
-       this.start=[day, month,startdate.getFullYear()].join("-");
+          this.nomeeting=1;
+          // this.events=[];
+          console.log(result['data'])
+      for(let x of result['data']){
+
+        console.log(x);
+        x.start=startOfDay(new Date(x.start)),
+        x.start.setHours(x.startHour,x.startMinute),
+        x.end=endOfDay(new Date(x.end)),
+        x.end.setHours(x.endHour,x.endMinute),
+        x.color= {primary:x.color}
+
+    //       var startdate = new Date(x.start),
+    //       month = ("0" + (startdate.getMonth() + 1)).slice(-2),
+    //       day = ("0" + startdate.getDate()).slice(-2);
+    //    this.start=[day, month,startdate.getFullYear()].join("-");
   
-       var enddate = new Date(x.end),
-       month = ("0" + (enddate.getMonth() + 1)).slice(-2),
-       day = ("0" + enddate.getDate()).slice(-2);
-    this.end=[day, month,enddate.getFullYear()].join("-");
+    //    var enddate = new Date(x.end),
+    //    month = ("0" + (enddate.getMonth() + 1)).slice(-2),
+    //    day = ("0" + enddate.getDate()).slice(-2);
+    // this.end=[day, month,enddate.getFullYear()].join("-");
+
+          this.events.push(x);
+
         }
-        this.events =data['data'] ;
+
+        this.meetings = result['data'] ;
       }
       })
     

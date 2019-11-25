@@ -81,7 +81,8 @@ export class MeetingHttpService {
   //get all Users code start
   public getAllUsers = (authToken): any => {
 
-    return this.http.get(`${this.baseurl}/api/v1/users/view/all?authToken=${authToken}`);
+    return this.http.get(`${this.baseurl}/api/v1/users/view/all`);
+    // return this.http.get(`${this.baseurl}/api/v1/users/view/all?authToken=${authToken}`);
     
   }
   //get all Users code end
@@ -103,7 +104,7 @@ export class MeetingHttpService {
       .set('endMinute', data.endMinute)
       .set('userId', data.userId)
       .set('adminId', data.adminId)
-      .set('adminName', data.adminName)
+      .set('adminUserName', data.adminName)
      
      
       .set('authToken', data.authToken)
@@ -117,8 +118,8 @@ export class MeetingHttpService {
   //get getAllMeetingsByUser code start
   public getAllMeetingsByUser = (userId, authToken): any => {
     
-    return this.http.get(`${this.baseurl}/api/v1/meetings/${userId}/getAllMeetingsByUser?authToken=${authToken}`);
-    
+    return this.http.get(`${this.baseurl}/api/v1/meetings/${userId}/getAllMeetingsByUser`);
+    // return this.http.get(`${this.baseurl}/api/v1/meetings/${userId}/getAllMeetingsByUser?authToken=${authToken}`);
   }
   //get getAllMeetingsByUser code end
 
