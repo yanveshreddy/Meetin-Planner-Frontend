@@ -15,9 +15,10 @@ import { UserRegistrationModule } from './user-registration/user-registration.mo
 
 import { SigninComponent} from './user-registration/signin/signin.component'
 import { UserModule } from './user/user.module';
-import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/moment';
 import * as moment from 'moment';
+import { MeetingHttpService } from './meeting-http.service';
+import { SocketService } from './socket.service';
 
 export function momentAdapterFactory() {
   return adapterFactory(moment);
@@ -46,9 +47,9 @@ export function momentAdapterFactory() {
       {path:"*",component:SigninComponent},
       {path:"**",component:SigninComponent},
     ]),
-    CalendarModule.forRoot({ provide: DateAdapter, useFactory: momentAdapterFactory })
+  
   ],
-  providers: [],
+  providers: [MeetingHttpService,SocketService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

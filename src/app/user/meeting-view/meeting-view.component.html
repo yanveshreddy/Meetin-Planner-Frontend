@@ -1,0 +1,80 @@
+<div class="container-fluid">
+    <div class="row">  
+        <div class="displayBlockMobile" style="width:99.999%;z-index:1">
+   
+                <nav class="navbar navbar-expand-lg navbar-dark" style="background:black">
+                   
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+                           
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <a class="navbar-brand"><img src="./../../../assets/iron_man.jpg" alt=""></a>
+                     
+                        <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+                          <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                              <li class="nav-item">
+                                <a class="nav-link" [routerLink]="['/userdashboard',userId]">Dashboard</a>
+                              </li>
+                          </ul>
+                          <button class="btn btn-primary" (click)="logout()">logout</button>
+                        </div>
+                      </nav>
+                </div>
+                </div>
+                </div>
+             
+                <div class="container-fluid" style="margin-top:40px">
+                    <div class="row">
+                        <div class="col-md-2">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card">
+                                <div class="card-header">
+                               Meeting Planned By {{event.adminName}}
+                                </div>
+                                <div class="card-body">
+                                    <form>
+                                        <div class="form-group">
+                                            <label>Title:</label>
+                                            <div class="form-control">{{event.title}}</div>
+                                          </div>
+                                          <div class="form-group">
+                                            <label>Location:</label>
+                                            <div class="form-control">{{event.location}}</div>
+                                          </div>
+                                          <div class="form-group">
+                                            <label>Purpose:</label>
+                                            <div class="form-control">{{event.purpose}}</div>
+                                          </div>
+                                          <div class="form-group">
+                                            <label>Start Date:</label>
+                                            <div class="form-control">{{start}}</div>
+                                  
+                                          </div>
+                                          <br>
+                                          <div class="form-group">
+                                            <label>Start Time:&nbsp;</label>
+                                            <div class="form-control">{{startHour}}:{{startMinute}} {{tpace}}</div>
+                                          </div>
+                                          <br>
+                                          <div class="form-group">
+                                            <label>End Date:</label>
+                                            <div class="form-control">{{end}}</div>
+                                          </div>
+                                          <br>
+                                          <div class="form-group">
+                                            <label>End Time:</label>
+                                            <div class="form-control">{{endHour}}:{{endMinute}} {{pace}}</div>
+                                          </div>
+                                  
+                                      </form>
+                                  
+                                </div>
+                               
+                              </div>
+                        </div>
+                        <div class="col-md-2">
+                            
+                        </div>
+                    </div>
+                </div>

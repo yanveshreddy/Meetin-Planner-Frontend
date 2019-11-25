@@ -52,7 +52,7 @@ export class SigninComponent implements OnInit {
             Cookie.set('userName', result.data.userDetails.firstName + ' ' + result.data.userDetails.lastName);
 
             if (result.data.userDetails.isAdmin == true) {
-              this.router.navigate(['/admindashboard', result.data.userDetails.userId]);         
+              this.router.navigate(['/adminhome']);         
                }
             else if (result.data.userDetails.isAdmin == false) {
               this.router.navigate(['/userdashboard', result.data.userDetails.userId]);

@@ -1,0 +1,130 @@
+img {
+    width:50px;
+}
+.navbar-collapse ul li a{
+    color:white;
+    font-family: 'Times New Roman', Times, serif;
+    font-size:15px;
+    border:2px solid white;
+    padding:10px;
+    margin-left:30px;
+    margin-right:30px;
+    border-radius:30px;
+    text-align:center;
+    cursor: pointer;
+    transition:1s;
+}
+.navbar-collapse ul li a:hover {
+    color:red;
+ }
+ #active {
+     text-decoration:underline;
+ }
+.btn-primary {
+    border:1px solid white;
+    background-color:rgb(70, 69, 69);
+    color:white;
+    font-family: 'Times New Roman', Times, serif;
+}
+.header {
+    font-size:20px;
+    font-family:'Times New Roman', Times, serif;
+    color:white;
+    text-align:center;
+    width:100%;
+    text-shadow:0px 0px 5px white;
+}
+@media only screen and (max-width:990px) {
+    .navbar-collapse ul {
+        text-align:center;
+       width:200px;
+       text-align:center;
+       margin-left:auto;
+       margin-right:auto;
+    }
+    .navbar-collapse ul li {
+    text-align:center;
+       padding:10px;
+        display: block;
+    }
+}
+.color{
+    width:100px;
+}
+
+.card {
+    
+    box-shadow:0 10px 10px;
+}
+.card-header {
+    text-align:center;
+    text-transform:uppercase;
+    color:black;
+    font-family: cursive;
+    font-weight:600;
+    font-size:20px;
+}
+label {
+    color:red;
+    text-transform:uppercase;
+    font-weight:500;
+    font-style:italic;
+}
+input {
+    border-color:black;
+}
+.btn-primary:hover {
+    background-color:blue;
+}
+.deletebutton {
+   margin:20px;
+   background-color:rgb(138, 137, 137);
+   color:black;
+   border-radius:20px;
+   border:none;
+   width:100px;
+   text-transform:uppercase;
+}
+.deletebutton:hover {
+  background-color:rgb(241, 60, 60);
+}
+.delete {
+    width:100%;
+    text-align:right;
+}
+.edit {
+    width:100%;
+    text-align:center;   
+}
+.butt {
+    border-radius:20px;
+    border:none;
+    background-color:rgb(138, 137, 137);
+    width:80px;
+    text-transform:uppercase;
+}
+.butt:hover {
+    background-color:green;
+}
+.loader {
+    text-align: center;
+    border-left:2px solid blue;
+    border-right:2px solid blue;
+    border-bottom:2px solid white;
+    border-top:2px solid white;
+    border-radius:30px;
+    width:30px;
+    margin-left:auto;
+    margin-right: auto;
+    height:30px;
+    animation:rotate 1s infinite linear;
+  }
+
+ @keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}

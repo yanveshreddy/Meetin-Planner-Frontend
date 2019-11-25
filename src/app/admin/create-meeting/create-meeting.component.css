@@ -1,5 +1,3 @@
-/* @import "~@fortawesome/fontawesome-free/css/all.css"; */
-
 img {
     width:50px;
 }
@@ -50,18 +48,52 @@ img {
         display: block;
     }
 }
-.page{overflow-y: scroll;
-    overflow-x: hidden;
-    background-color:lightsteelblue}
+.color{
+    width:100px;
+}
 
-    .admin {
-        width:100%;
-        text-align:right;
-        margin-top:20px;
-        margin-right:20px;
-    }
-    .fa-user {
-       font-size:20px;
-       text-transform:uppercase;
-       font-weight:600;
-    }
+.card {
+    box-shadow:0 10px 10px;
+}
+.card-header {
+    text-align:center;
+    text-transform:uppercase;
+    color:black;
+    font-family: cursive;
+    font-weight:600;
+    font-size:20px;
+}
+label {
+    color:red;
+    text-transform:uppercase;
+    font-weight:500;
+    font-style:italic;
+}
+input {
+    border-color:black;
+}
+.btn-primary:hover {
+    background-color:blue;
+}
+.loader {
+    text-align: center;
+    border-left:2px solid blue;
+    border-right:2px solid blue;
+    border-bottom:2px solid white;
+    border-top:2px solid white;
+    border-radius:30px;
+    width:30px;
+    margin-left:auto;
+    margin-right: auto;
+    height:30px;
+    animation:rotate 1s infinite linear;
+  }
+
+ @keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}
