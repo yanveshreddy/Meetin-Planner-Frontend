@@ -1,6 +1,5 @@
-img {
-    width:50px;
-}
+@import "~@fortawesome/fontawesome-free/css/all.css";
+
 .navbar-collapse ul li a{
     color:white;
     font-family: 'Times New Roman', Times, serif;
@@ -25,6 +24,9 @@ img {
     background-color:rgb(70, 69, 69);
     color:white;
     font-family: 'Times New Roman', Times, serif;
+}
+img {
+    width:60px;
 }
 .header {
     font-size:20px;
@@ -51,8 +53,8 @@ img {
 
 .admin {
     width:100%;
-    text-align:right;
-    margin-top:20px;
+    align-items:right;
+    margin-top:2px;
     margin-right:20px;
 }
 .fa-award {
@@ -62,7 +64,8 @@ img {
 }
 .plan {
     width:100%;
-    margin-top:40px;
+    /* margin-top:40px; */
+    text-align: left;
     text-transform:uppercase;
 }
 .plan h3 {

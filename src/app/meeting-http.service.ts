@@ -87,6 +87,17 @@ export class MeetingHttpService {
   }
   //get all Users code end
 
+  // get single user details
+
+  public getSingleUser =(userId,authToken):any =>{
+
+    return this.http.get(`${this.baseurl}/api/v1/users/${userId}/details`);
+
+  }
+
+  //end get single user details
+
+
   /* **************************************************************************************** */
 
   //create event code is start
@@ -172,42 +183,42 @@ export class MeetingHttpService {
   //delete Meeting code end
 
 
-  //send create meeting mail notify code start
-  public sendCreateMailNotification = (data): any => {
-    let params = new HttpParams()
-      .set('userId', data.userId)
-      .set('title', data.title)
-      .set('start', data.start)
-      .set('end', data.end)
-    return this.http.post(`${this.baseurl}/sendCreateMail`, params);
+  // //send create meeting mail notify code start
+  // public sendCreateMailNotification = (data): any => {
+  //   let params = new HttpParams()
+  //     .set('userId', data.userId)
+  //     .set('title', data.title)
+  //     .set('start', data.start)
+  //     .set('end', data.end)
+  //   return this.http.post(`${this.baseurl}/sendCreateMail`, params);
     
-  }
-  //end create meeting mail notify code end
+  // }
+  // //end create meeting mail notify code end
 
 
-  //send edit event mail notify code start
-  public sendUpdateMailNotification = (data): any => {
-    console.log(data)
-    let params = new HttpParams()
-      .set('userId', data.userId)
-      .set('title', data.title)
-      .set('adminName', data.adminName)
-    return this.http.post(`${this.baseurl}/sendEditMail`, params);
+  // //send edit event mail notify code start
+  // public sendUpdateMailNotification = (data): any => {
+  //   console.log(data)
+  //   let params = new HttpParams()
+  //     .set('userId', data.userId)
+  //     .set('title', data.title)
+  //     .set('adminName', data.adminName)
+  //   return this.http.post(`${this.baseurl}/sendEditMail`, params);
     
-  }
-  //end edit event mail notify code end
+  // }
+  // //end edit event mail notify code end
 
 
 
-  //send delete event mail notify code start
-  public sendDeleteMailnotification = (data): any => {
-    let params = new HttpParams()
-      .set('userId', data.userId)
-      .set('title', data.title)
-      .set('adminName', data.adminName)
-    return this.http.post(`${this.baseurl}/sendDeleteMail`, params);
+  // //send delete event mail notify code start
+  // public sendDeleteMailnotification = (data): any => {
+  //   let params = new HttpParams()
+  //     .set('userId', data.userId)
+  //     .set('title', data.title)
+  //     .set('adminName', data.adminName)
+  //   return this.http.post(`${this.baseurl}/sendDeleteMail`, params);
   
-  }
-  //end delete event mail notify code end
+  // }
+  // //end delete event mail notify code end
 
 }

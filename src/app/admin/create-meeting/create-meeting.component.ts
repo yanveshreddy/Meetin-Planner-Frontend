@@ -117,14 +117,14 @@ export class CreateMeetingComponent implements OnInit {
           this.service.createMeeting(data).subscribe(
             data=>{
              
-              this.createMeetingMailNotification();
+              //this.createMeetingMailNotification();
              this.toastr.success(data.message);
              let details={
               adminName:this.adminName,
               userId:this.userId,
               meetingId:this.meetingId
           }
-    this.socketService.addcreatenotify(details);
+    this.socketService.emitCreateNotification(details);
              this.router.navigate(['/admindashboard',this.userId])
             },
             err=>{
@@ -137,24 +137,24 @@ export class CreateMeetingComponent implements OnInit {
     }
 
 
-     //start send email notify
-      public createMeetingMailNotification=()=>{
-         let data={
-           userId:this.userId,
-           title:this.title,
-           start:this.startDate,
-           end:this.endDate
-         }
-         this.service.sendCreateMailNotification(data).subscribe(
-           data=>{
+    //  //start send email notify
+    //   public createMeetingMailNotification=()=>{
+    //      let data={
+    //        userId:this.userId,
+    //        title:this.title,
+    //        start:this.startDate,
+    //        end:this.endDate
+    //      }
+    //      this.service.sendCreateMailNotification(data).subscribe(
+    //        data=>{
              
-           },
-           err=>{
-             this.toastr.error('spme error occured');
-           }
-         )
-      }
-     //end send email notify
+    //        },
+    //        err=>{
+    //          this.toastr.error('spme error occured');
+    //        }
+    //      )
+    //   }
+    //  //end send email notify
 
 //logout code start
 public logout=()=>{

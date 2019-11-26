@@ -266,9 +266,9 @@ public getonlineUsers=()=>{
 
 //get editevent notification code start
  public geteditnotifiation=()=>{
-   this.socketService.geteditnotify(`${this.userId} edit`).subscribe(
+   this.socketService.listenToEditNotification(`${this.userId} edit`).subscribe(
      data=>{
-       this.toastr.success(`${data.adminName} Edit your Schedule`);
+       this.toastr.success(`${data.adminName} updated your Schedule`);
      }
    )
  }
@@ -277,9 +277,9 @@ public getonlineUsers=()=>{
 
 //get deleteevent notification code start
 public getdeletenotifiation=()=>{
-  this.socketService.getdeletenotify(`${this.userId} delete`).subscribe(
+  this.socketService.listenToDeleteNotification(`${this.userId} delete`).subscribe(
     data=>{
-      this.toastr.success(`${data.adminName} cancel your Schedule`);
+      this.toastr.success(`${data.adminName} cancelled your Schedule`);
     }
   )
 }
@@ -288,9 +288,9 @@ public getdeletenotifiation=()=>{
 
 //get create event notification code start
 public getcreatenotifiation=()=>{
-  this.socketService.getcreatenotify(`${this.userId} create`).subscribe(
+  this.socketService.listenToCreateNotification(`${this.userId} create`).subscribe(
     data=>{
-      this.toastr.success(`${data.adminName} create a schedule`);
+      this.toastr.success(`${data.adminName} created a schedule`);
     }
   )
 }

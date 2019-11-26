@@ -19,6 +19,7 @@ import { adapterFactory } from 'angular-calendar/date-adapters/moment';
 import * as moment from 'moment';
 import { MeetingHttpService } from './meeting-http.service';
 import { SocketService } from './socket.service';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 export function momentAdapterFactory() {
   return adapterFactory(moment);
@@ -35,6 +36,7 @@ export function momentAdapterFactory() {
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    FontAwesomeModule,
     ToastrModule.forRoot({
       timeOut: 1000
     }),

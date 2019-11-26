@@ -6,6 +6,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { NgbDatepickerConfig, NgbDateNativeAdapter, NgbDateAdapter } from '@ng-bootstrap/ng-bootstrap';
 import { SocketService } from 'src/app/socket.service';
 import { Cookie } from 'ng2-cookies/ng2-cookies';
+import {Location} from '@angular/common';
 @Component({
   selector: 'app-update-meeting',
   templateUrl: './update-meeting.component.html',
@@ -24,10 +25,17 @@ export class UpdateMeetingComponent implements OnInit {
   public userId: any;
   public meeting: any;
   public adminName: any;
- // public signuploader: boolean;
+ 
   public authToken: string;
 
-  constructor(public socketService:SocketService,public toastr: ToastrService,public service:MeetingHttpService,public router:Router,public _route:ActivatedRoute,private config:NgbDatepickerConfig) {
+  constructor(
+    public socketService:SocketService,
+    public toastr: ToastrService,
+    public service:MeetingHttpService,
+    public router:Router,
+    public _route:ActivatedRoute,
+    private location:Location,
+    private config:NgbDatepickerConfig) {
    
     this.meetingId =this._route.snapshot.paramMap.get('meetingId');
     
@@ -54,8 +62,8 @@ export class UpdateMeetingComponent implements OnInit {
       data=>{
 
         let x=data['data']
-        x.startDate=new Date(x.startDate)
-        x.endDate=new Date(x.endDate);
+        x.start=new Date(x.start)
+        x.end=new Date(x.end);
         this.startTime={hour:x.startHour,minute:x.startMinute}
         this.endTime={hour:x.endHour,minute:x.endMinute}
         this.userId=x.userId
@@ -73,7 +81,7 @@ export class UpdateMeetingComponent implements OnInit {
 
   //edit code is start
   public updateMeeting=()=>{
-  //  this.signuploader=false;
+ 
     this.meeting.startHour=this.startTime.hour
     this.meeting.startMinute=this.startTime.minute
 
@@ -82,7 +90,7 @@ export class UpdateMeetingComponent implements OnInit {
 
    this.service.updateMeeting(this.meeting,this.authToken).subscribe(
      data=>{
-    //  this.signuploader=true;
+    
       this.router.navigate(['/admindashboard',this.userId]);
       this.toastr.success(data.message);
       let details={
@@ -90,11 +98,10 @@ export class UpdateMeetingComponent implements OnInit {
         userId:this.userId,
         meetingId:this.meetingId
     }
-      this.socketService.addeditnotify(details);
-      this.updateMeetingMailNotification();
+      this.socketService.emitUpdateNotification(details);
      },
      err=>{
-     // this.signuploader=true;
+    
        this.toastr.error('some error occured');
      }
    )
@@ -114,8 +121,8 @@ export class UpdateMeetingComponent implements OnInit {
         userId:this.userId,
         meetingId:this.meetingId
     }
-      this.socketService.adddeletenotify(details);
-       this.deleteMeetingMailNotification();
+      this.socketService.emitDeleteNotification(details);
+      // this.deleteMeetingMailNotification();
        this.router.navigate(['/admindashboard',this.userId]);
      },
      err=>{
@@ -125,45 +132,50 @@ export class UpdateMeetingComponent implements OnInit {
  }
   //delete code is end
    
-  //start send email notify
-  public updateMeetingMailNotification=()=>{
+//   //start send email notify
+//   public updateMeetingMailNotification=()=>{
  
-    let data={
-      userId:this.userId,
-      title:this.title,
-      adminName:this.adminName
-    }
-    this.service.sendUpdateMailNotification(data).subscribe(
-      data=>{
+//     let data={
+//       userId:this.userId,
+//       title:this.title,
+//       adminName:this.adminName
+//     }
+//     this.service.sendUpdateMailNotification(data).subscribe(
+//       data=>{
         
-      },
-      err=>{
-        this.toastr.error('some error occured');
-      }
-    )
- }
-//end send email notify
+//       },
+//       err=>{
+//         this.toastr.error('some error occured');
+//       }
+//     )
+//  }
+// //end send email notify
 
 
 
-//start send email notify
-public deleteMeetingMailNotification=()=>{
-  let data={
-    userId:this.userId,
-    title:this.title,
-    adminName:this.adminName
-  }
-  this.service.sendDeleteMailnotification(data).subscribe(
-    data=>{
+// //start send email notify
+// public deleteMeetingMailNotification=()=>{
+//   let data={
+//     userId:this.userId,
+//     title:this.title,
+//     adminName:this.adminName
+//   }
+//   this.service.sendDeleteMailnotification(data).subscribe(
+//     data=>{
       
-    },
-    err=>{
-      this.toastr.error('some error occured');
-    }
-  )
-}
-//end send email notify
+//     },
+//     err=>{
+//       this.toastr.error('some error occured');
+//     }
+//   )
+// }
+// //end send email notify
 
+
+public goBack()
+{
+  this.location.back();
+}
 
 //logout code start
 public logout=()=>{

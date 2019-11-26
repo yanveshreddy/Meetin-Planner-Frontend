@@ -38,6 +38,7 @@ import {
   endOfWeek,
 } from 'date-fns';
 import { SocketService } from 'src/app/socket.service';
+import { EventEmitter } from 'events';
 
 
 type CalendarPeriod = 'day' | 'week' | 'month';
@@ -78,11 +79,14 @@ function endOfPeriod(period: CalendarPeriod, date: Date): Date {
 @Component({
   selector: 'app-admin-dash',
   templateUrl: './admin-dash.component.html',
-  styleUrls: ['./admin-dash.component.css']
+  styleUrls: ['./admin-dash.component.css'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class AdminDashComponent implements OnInit {
 
   public userId: any;
+  public userName:string;
+  public adminName: string;
   public p: Number = 1;
   public count: Number = 5;
   public view: CalendarView = CalendarView.Month;
@@ -109,19 +113,26 @@ export class AdminDashComponent implements OnInit {
 
 
   
-  constructor(public socketService:SocketService,public toastr: ToastrService,public service:MeetingHttpService,public router: Router,public _route:ActivatedRoute,private modal: NgbModal) {
-    this.dateOrViewChanged()
-   }
+  constructor(public socketService: SocketService,
+    public toastr: ToastrService,
+    public service: MeetingHttpService,
+    public router: Router,
+    public _route: ActivatedRoute,
+    private modal: NgbModal) 
+    {
+        this.dateOrViewChanged()
+        
+  }
 
   ngOnInit() {
-    this.userId=this._route.snapshot.paramMap.get('userId');
-    this.authToken=Cookie.get('authToken');
-   this.getAllMeetingsByUser();
-
+    this.userId = this._route.snapshot.paramMap.get('userId');
+        this.adminName = Cookie.get('userName');
+        this.authToken = Cookie.get('authToken');
+        this.getSingleUser();
+        this.getAllMeetingsByUser();
   }
   
  
-
   dayClicked({ date, events}: { date: Date; events: CalendarEvent[] }): void {
     if (isSameMonth(date, this.viewDate)) {
       if ((isSameDay(this.viewDate, date) && this.activeDayIsOpen === true) || events.length === 0) {
@@ -229,14 +240,32 @@ export class AdminDashComponent implements OnInit {
           this.events.push(x);
 
         }
-
+        //this.refresh.next();
         this.meetings = result['data'] ;
       }
       })
     
     }  
+
     //getAllMeetingsByUser code end
 
+    
+
+    public getSingleUser=()=>{
+
+      this.service.getSingleUser(this.userId,this.authToken).subscribe(
+        
+      result=>{
+
+        let resobj= result['data'];
+        this.userName=resobj.firstName+''+resobj.lastName;
+      }),
+      err=>{
+        this.toastr.error('some error occured')
+      }
+
+
+    }
 
 
     //logout code start

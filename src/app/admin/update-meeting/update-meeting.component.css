@@ -1,5 +1,7 @@
+@import "~@fortawesome/fontawesome-free/css/all.css";
+
 img {
-    width:50px;
+    width:60px;
 }
 .navbar-collapse ul li a{
     color:white;
@@ -53,8 +55,15 @@ img {
 }
 
 .card {
-    
-    box-shadow:0 10px 10px;
+    /* background:linear-gradient(to right,blue,white);  */
+    background-size:cover;
+    background-position:top;
+    background-repeat:no-repeat;
+    height:auto;
+    margin-top:30px;
+    margin-left:auto;
+    margin-right:auto;
+    padding:20px;
 }
 .card-header {
     text-align:center;
@@ -65,7 +74,7 @@ img {
     font-size:20px;
 }
 label {
-    color:red;
+    color:black;
     text-transform:uppercase;
     font-weight:500;
     font-style:italic;
@@ -76,7 +85,7 @@ input {
 .btn-primary:hover {
     background-color:blue;
 }
-.deletebutton {
+/* .deletebutton {
    margin:20px;
    background-color:rgb(138, 137, 137);
    color:black;
@@ -84,41 +93,52 @@ input {
    border:none;
    width:100px;
    text-transform:uppercase;
-}
-.deletebutton:hover {
-  background-color:rgb(241, 60, 60);
-}
-.delete {
-    width:100%;
-    text-align:right;
-}
+} */
+
+.flex-container {
+    display: flex;
+   justify-content: space-around;
+
+  }
+/*   
+  .flex-container > div {
+    background-color: #f1f1f1;
+    /* margin: 10px;
+    padding: 20px;
+    font-size: 30px; 
+  } */
+  
 .edit {
     width:100%;
     text-align:center;   
 }
-.butt {
+
+.back{
+    width:100%;
+    text-align: center;
+}
+.deletebutton:hover {
+    background-color:rgb(241, 60, 60);
+  }
+  .delete {
+      width:100%;
+      text-align:center;
+  }
+.back1:hover {
+    background-color:navy;
+}
+
+/* .butt {
     border-radius:20px;
     border:none;
     background-color:rgb(138, 137, 137);
     width:80px;
     text-transform:uppercase;
-}
+} */
+
 .butt:hover {
     background-color:green;
 }
-.loader {
-    text-align: center;
-    border-left:2px solid blue;
-    border-right:2px solid blue;
-    border-bottom:2px solid white;
-    border-top:2px solid white;
-    border-radius:30px;
-    width:30px;
-    margin-left:auto;
-    margin-right: auto;
-    height:30px;
-    animation:rotate 1s infinite linear;
-  }
 
  @keyframes rotate {
   from {
