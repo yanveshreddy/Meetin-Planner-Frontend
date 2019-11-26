@@ -18,7 +18,8 @@ import { MeetingViewComponent } from './meeting-view/meeting-view.component';
       useFactory: adapterFactory
     }),
     RouterModule.forChild([
-     { path:'userdashboard/:userId',component:UserdashboardComponent}
+     { path:'userdashboard/:userId',component:UserdashboardComponent},
+     {path:'usermeetingview/:meetingId',component:MeetingViewComponent}
     ])
   ]
 })

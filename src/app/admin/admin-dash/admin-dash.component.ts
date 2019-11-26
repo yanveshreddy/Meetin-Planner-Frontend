@@ -206,49 +206,40 @@ export class AdminDashComponent implements OnInit {
     //   this.modal.open(this.modalContent, { size: 'lg' });
     // }
 
-    //getAllMeetingsByUser code start
+    //get all event code start
     public getAllMeetingsByUser=()=>{
-      this.service.getAllMeetingsByUser(this.userId,this.authToken).subscribe( result => {
-
-        this.event=result.data;
+        
+      this.service.getAllMeetingsByUser(this.userId,this.authToken).subscribe( data => {
+        this.event=data.data;
         if(this.event==null){
               this.nomeeting=0;
         }
         else {
           this.nomeeting=1;
-          // this.events=[];
-          console.log(result['data'])
-      for(let x of result['data']){
-
-        console.log(x);
-        x.start=startOfDay(new Date(x.start)),
-        x.start.setHours(x.startHour,x.startMinute),
-        x.end=endOfDay(new Date(x.end)),
-        x.end.setHours(x.endHour,x.endMinute),
-        x.color= {primary:x.color}
-
-    //       var startdate = new Date(x.start),
-    //       month = ("0" + (startdate.getMonth() + 1)).slice(-2),
-    //       day = ("0" + startdate.getDate()).slice(-2);
-    //    this.start=[day, month,startdate.getFullYear()].join("-");
-  
-    //    var enddate = new Date(x.end),
-    //    month = ("0" + (enddate.getMonth() + 1)).slice(-2),
-    //    day = ("0" + enddate.getDate()).slice(-2);
-    // this.end=[day, month,enddate.getFullYear()].join("-");
-
-          this.events.push(x);
-
+          for(let x of data['data']){
+            x.start=startOfDay(new Date(x.start))
+            x.start.setHours(x.startHour,x.startMinute)
+            x.end=endOfDay(new Date(x.end))
+            x.end.setHours(x.endHour,x.endMinute)
+              x.color={primary:x.color}
+              var startdate = new Date(x.start),
+              month = ("0" + (startdate.getMonth() + 1)).slice(-2),
+              day = ("0" + startdate.getDate()).slice(-2);
+           this.start=[day, month,startdate.getFullYear()].join("-");
+      
+           var enddate = new Date(x.end),
+           month = ("0" + (enddate.getMonth() + 1)).slice(-2),
+           day = ("0" + enddate.getDate()).slice(-2);
+        this.end=[day, month,enddate.getFullYear()].join("-");
+            }
+            this.events =data['data'] ;
+            this.meetings=data['data'];
+      
         }
-        //this.refresh.next();
-        this.meetings = result['data'] ;
-      }
+  
       })
-    
     }  
-
-    //getAllMeetingsByUser code end
-
+    //get all event code end
     
 
     public getSingleUser=()=>{

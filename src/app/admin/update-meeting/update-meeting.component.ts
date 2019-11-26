@@ -91,7 +91,6 @@ export class UpdateMeetingComponent implements OnInit {
    this.service.updateMeeting(this.meeting,this.authToken).subscribe(
      data=>{
     
-      this.router.navigate(['/admindashboard',this.userId]);
       this.toastr.success(data.message);
       let details={
         adminName:this.adminName,
@@ -99,6 +98,13 @@ export class UpdateMeetingComponent implements OnInit {
         meetingId:this.meetingId
     }
       this.socketService.emitUpdateNotification(details);
+      
+      setTimeout(()=>{
+        this.router.navigate(['/admindashboard',this.userId]);
+
+      },1000)
+      
+
      },
      err=>{
     

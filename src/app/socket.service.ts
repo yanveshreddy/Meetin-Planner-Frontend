@@ -97,6 +97,7 @@ export class SocketService {
   //get edit code start
   public listenToEditNotification = (userId) => {
 
+    console.log(userId);
     return Observable.create((observer) => {
 
       this.socket.on(userId, (data) => {

@@ -108,6 +108,7 @@ export class UserdashboardComponent implements OnInit {
 
   activeDayIsOpen: boolean = true;
   public event: any;
+  public meetings:any;
   public noevent: number;
   public authToken: string;
   
@@ -158,6 +159,7 @@ export class UserdashboardComponent implements OnInit {
           this.end=[day, month,enddate.getFullYear()].join("-");
               }
               this.events =data['data'] ;
+              this.meetings=data['data'];
         
           }
     
