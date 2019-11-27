@@ -96,7 +96,7 @@ export class CreateMeetingComponent implements OnInit {
           this.toastr.warning("The end date and time has to be in future than the start date and time");
         }
         else{
-         // this.signuploader=false;
+         
          let data:meetingData = {
             start:this.startDate,
             end:this.endDate,

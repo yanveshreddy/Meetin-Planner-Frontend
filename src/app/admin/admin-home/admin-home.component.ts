@@ -16,8 +16,8 @@ import { SocketService } from 'src/app/socket.service';
 export class AdminHomeComponent implements OnInit {
   public adminName: string;
   public users: any;
-  public p: Number = 1;
-  public count: Number = 10;
+  public p: number = 1;
+  public count: number = 10;
   public userId: string;
   public authToken: string;
   public userList:any;

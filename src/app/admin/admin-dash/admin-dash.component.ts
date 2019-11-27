@@ -88,8 +88,8 @@ export class AdminDashComponent implements OnInit {
   public userId: any;
   public userName:string;
   public adminName: string;
-  public p: Number = 1;
-  public count: Number = 5;
+  public p: number = 1;
+  public count: number = 5;
   public view: CalendarView = CalendarView.Month;
 
   CalendarView = CalendarView;
@@ -105,6 +105,7 @@ export class AdminDashComponent implements OnInit {
   event: any;
   public authToken: string;
   
+  refresh: Subject<any> = new Subject();
   // modalData: {
   //   action: string;
   //   event: CalendarEvent;

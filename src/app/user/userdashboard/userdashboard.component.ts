@@ -89,8 +89,8 @@ export class UserdashboardComponent implements OnInit {
   public events: CalendarEvent[] = [];
   public start: any;
   public end: any;
-  public p: Number = 1;
-  public count: Number = 5;
+  public p: number = 1;
+  public count: number = 5;
   public userName: String;
   public html;
   public date = new Date().getMinutes()
@@ -106,6 +106,7 @@ export class UserdashboardComponent implements OnInit {
 
   viewDate: Date = new Date();
  
+  refresh: Subject<any> = new Subject();
 
   activeDayIsOpen: boolean = true;
   public event: any;
