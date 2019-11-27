@@ -7,7 +7,7 @@ import { config } from 'process';
 import { NgbDatepickerConfig, NgbDateNativeAdapter, NgbDateAdapter } from '@ng-bootstrap/ng-bootstrap';
 import { Cookie } from 'ng2-cookies/ng2-cookies';
 import { SocketService } from 'src/app/socket.service';
-
+import { Location } from '@angular/common';
 @Component({
   selector: 'app-meeting-view',
   templateUrl: './meeting-view.component.html',
@@ -33,17 +33,26 @@ export class MeetingViewComponent implements OnInit {
   public end: string;
   public adminName: any;
   public authToken: string;
+  public userName:string;
 
-
-  constructor(public toastr: ToastrService, public service: MeetingHttpService, public router: Router, public _route: ActivatedRoute, private modal: NgbModal, private config: NgbDatepickerConfig, public socketService: SocketService) { }
+  constructor(public toastr: ToastrService,
+    public service: MeetingHttpService,
+    public router: Router,
+    public _route: ActivatedRoute,
+    private location: Location,
+    private modal: NgbModal,
+    private config: NgbDatepickerConfig,
+    public socketService: SocketService) { }
 
   ngOnInit() {
     this.meetingId = this._route.snapshot.paramMap.get('meetingId');
     this.authToken = Cookie.get('authToken');
+    this.userName =Cookie.get('userName');
     this.getSingleMeeting();
-    this.geteditnotifiation();
-    this.getdeletenotifiation();
-    this.getcreatenotifiation();
+    this.getEditNotifiation();
+    this.getDeleteNotifiation();
+    this.getCreateNotifiation();
+    this.getAlarmNotification();
   }
 
 
@@ -88,40 +97,36 @@ export class MeetingViewComponent implements OnInit {
   //get meeting code end
 
 
+
+  //get create meeting notification code start
+  public getCreateNotifiation = () => {
+    this.socketService.listenToCreateNotification(`${this.userId}`);
+  }
+  //get create meeting notification code end
+
   //get editmeeting notification code start
-  public geteditnotifiation = () => {
-    this.socketService.listenToEditNotification(`${this.userId} edit`).subscribe(
-      data => {
-        this.toastr.success(`${data.adminName} updated your Schedule`);
-      }
-    )
+  public getEditNotifiation = () => {
+    this.socketService.listenToEditNotification(`${this.userId}`);
   }
   //get editmeeting notification code end
 
 
   //get deletemeeting notification code start
-  public getdeletenotifiation = () => {
-    this.socketService.listenToDeleteNotification(`${this.userId} delete`).subscribe(
-      data => {
-        this.toastr.success(`${data.adminName} cancelled your Schedule`);
-      }
-    )
+  public getDeleteNotifiation = () => {
+    this.socketService.listenToDeleteNotification(`${this.userId}`);
   }
   //get editmeeting notification code end
 
-
-  //get create meeting notification code start
-  public getcreatenotifiation = () => {
-    this.socketService.listenToCreateNotification(`${this.userId} create`).subscribe(
-      data => {
-        this.toastr.success(`${data.adminName} created a schedule`);
-      }
-    )
+  public getAlarmNotification = () => {
+    this.socketService.listenToAlarmNotification(`${this.userId}`);
   }
-  //get create meeting notification code end
 
+  public goBack() {
+    this.location.back();
+  }
   //logout code start
   public logout = () => {
+
     this.socketService.exitsocket();
     this.socketService.disconnectedSocket();
     Cookie.delete('authToken');

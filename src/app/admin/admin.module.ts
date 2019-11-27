@@ -12,6 +12,7 @@ import { NgbModalModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { AdminRouteguardService } from './admin-routeguard.service';
 
 
 
@@ -28,13 +29,15 @@ import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
     FormsModule,
     NgbModule,
     RouterModule.forChild ([
-      {path:'adminhome',component:AdminHomeComponent},
-      {path:'admindashboard/:userId',component:AdminDashComponent},
-      {path:'createmeeting/:userId',component:CreateMeetingComponent},
-      {path:'updatemeeting/:meetingId',component:UpdateMeetingComponent}
+
+      {path:'adminhome',component:AdminHomeComponent,canActivate:[AdminRouteguardService]},
+      {path:'admindashboard/:userId',component:AdminDashComponent,canActivate:[AdminRouteguardService]},
+      {path:'createmeeting/:userId',component:CreateMeetingComponent,canActivate:[AdminRouteguardService]},
+      {path:'updatemeeting/:meetingId',component:UpdateMeetingComponent,canActivate:[AdminRouteguardService]}
       // {path:'createevent/:userId',component:AdminCreateEventComponent},
       // {path:'editevent/:eventId',component:AdminEditEventComponent}
      ])
-  ]
+  ],
+  providers:[AdminRouteguardService]
 })
 export class AdminModule { }

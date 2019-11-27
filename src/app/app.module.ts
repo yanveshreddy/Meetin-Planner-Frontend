@@ -20,6 +20,7 @@ import * as moment from 'moment';
 import { MeetingHttpService } from './meeting-http.service';
 import { SocketService } from './socket.service';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { UserHttpService } from './user-http.service';
 
 export function momentAdapterFactory() {
   return adapterFactory(moment);
@@ -38,7 +39,7 @@ export function momentAdapterFactory() {
     HttpClientModule,
     FontAwesomeModule,
     ToastrModule.forRoot({
-      timeOut: 1000
+      timeOut: 5000
     }),
     UserRegistrationModule,
     AdminModule,
@@ -51,7 +52,7 @@ export function momentAdapterFactory() {
     ]),
   
   ],
-  providers: [MeetingHttpService,SocketService],
+  providers: [UserHttpService,MeetingHttpService,SocketService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,5 +1,15 @@
 @import "~@fortawesome/fontawesome-free/css/all.css";
 
+
+.navbar-brand {
+    padding: 0px;
+}
+.navbar-brand>img {
+    height: 100%;
+    padding: 10px;
+    width: auto;
+}
+
 .navbar-collapse ul li a{
     color:white;
     font-family: 'Times New Roman', Times, serif;
@@ -33,7 +43,14 @@
     width:100%;
     text-shadow:0px 0px 5px white;
 }
-@media only screen and (max-width:990px) {
+
+.header1{
+
+    display: flex;
+    justify-content: space-around;
+
+}
+/* @media only screen and (max-width:990px) {
     .navbar-collapse ul {
         text-align:center;
        width:200px;
@@ -46,16 +63,18 @@
        padding:10px;
         display: block;
     }
-}
+
+} */
 img {
     width:60px;
 }
-.admin {
-    width:100%;
-    align-items:right;
+/* .admin {
+    /* width:100%; */
+    /* text-align:right; */
+    /* margin-left: 80px;
     margin-top:2px;
-    margin-right:20px;
-}
+    margin-right:20px; 
+} */
 .fa-award {
     font-size:20px;
     text-transform:uppercase;
@@ -84,4 +103,25 @@ h3 {
    color:black
    
   }
-  
+  @media screen and (min-width: 480px) and (max-width: 1080px) {
+
+    .navbar-collapse ul {
+        text-align:center;
+       width:200px;
+       text-align:center;
+       margin-left:auto;
+       margin-right:auto;
+    }
+    .navbar-collapse ul li {
+    text-align:center;
+       padding:10px;
+        display: block;
+    }
+    .header1{
+
+        display: flex;
+        justify-content: space-around;
+    
+    }
+
+  }

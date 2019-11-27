@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { MeetingHttpService } from 'src/app/meeting-http.service';
+import { UserHttpService } from 'src/app/user-http.service';
 
 import { Router, ActivatedRoute } from '@angular/router';
 import { Subject } from 'rxjs';
@@ -116,6 +117,7 @@ export class AdminDashComponent implements OnInit {
   constructor(public socketService: SocketService,
     public toastr: ToastrService,
     public service: MeetingHttpService,
+    public userservice:UserHttpService,
     public router: Router,
     public _route: ActivatedRoute,
     private modal: NgbModal) 
@@ -244,7 +246,7 @@ export class AdminDashComponent implements OnInit {
 
     public getSingleUser=()=>{
 
-      this.service.getSingleUser(this.userId,this.authToken).subscribe(
+      this.userservice.getSingleUser(this.userId,this.authToken).subscribe(
         
       result=>{
 

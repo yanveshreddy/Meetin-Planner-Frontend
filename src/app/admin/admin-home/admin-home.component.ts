@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Cookie } from 'ng2-cookies/ng2-cookies';
 import { ToastrService } from 'ngx-toastr';
 import { MeetingHttpService } from 'src/app/meeting-http.service';
+import { UserHttpService } from 'src/app/user-http.service';
 import { Router } from '@angular/router';
 import { SocketService } from 'src/app/socket.service';
 
@@ -14,13 +15,19 @@ import { SocketService } from 'src/app/socket.service';
 })
 export class AdminHomeComponent implements OnInit {
   public adminName: string;
-  public username: any;
+  public users: any;
   public p: Number = 1;
   public count: Number = 10;
   public userId: string;
   public authToken: string;
+  public userList:any;
 
-  constructor(public toastr: ToastrService,public service:MeetingHttpService,public router: Router,public socketService:SocketService) { }
+  constructor(
+    public toastr: ToastrService,
+    public service:MeetingHttpService,
+    public userService:UserHttpService,
+    public router: Router,
+    public socketService:SocketService) { }
 
   ngOnInit() {
     this.authToken=Cookie.get('authToken');
@@ -35,7 +42,7 @@ export class AdminHomeComponent implements OnInit {
   public verifyUser=()=>{
     this.socketService.verifyUser().subscribe(
       data=>{
-        this.socketService.setUser(this.userId);
+        this.socketService.setUser(this.authToken);
       },
       err=>{
         this.toastr.error('some error occured')
@@ -49,11 +56,19 @@ export class AdminHomeComponent implements OnInit {
 public getonlineUsers=()=>{
   this.socketService.onlineUserList().subscribe(
     data=>{
-    },
+      this.userList = [];
+
+        for (let x in data) {
+
+          let temp = { 'userId': x, 'name': data[x], 'unread': 0, 'chatting': false };
+
+          this.userList.push(temp);          
+
+    }
     err=>{
       this.toastr.error('some error occured')
     }
-  )
+    })
 }
 //get online users code end
 
@@ -61,9 +76,9 @@ public getonlineUsers=()=>{
 
   //get all users code start
    public getAllUsers=()=>{
-     this.service.getAllUsers(this.authToken).subscribe(
+     this.userService.getAllUsers(this.authToken).subscribe(
        data=>{
-         this.username=data.data;
+         this.users=data.data;
        }
      )
    }

@@ -7,7 +7,8 @@ import { NgbDatepickerConfig, NgbDateAdapter, NgbDateNativeAdapter } from '@ng-b
 import { config,Subscription, throwError } from 'rxjs';
 import { Cookie } from 'ng2-cookies/ng2-cookies';
 import { SocketService } from 'src/app/socket.service';
-
+import {meetingData} from './meetingData';
+import {Location} from '@angular/common';
 @Component({
   selector: 'app-create-meeting',
   templateUrl: './create-meeting.component.html',
@@ -42,6 +43,7 @@ export class CreateMeetingComponent implements OnInit {
     public service:MeetingHttpService,
     public router: Router,
     public _route:ActivatedRoute, 
+    private location:Location,
     private config:NgbDatepickerConfig) 
 
     { 
@@ -95,8 +97,7 @@ export class CreateMeetingComponent implements OnInit {
         }
         else{
          // this.signuploader=false;
-         let data = {
-
+         let data:meetingData = {
             start:this.startDate,
             end:this.endDate,
             startHour:this.startTime.hour,
@@ -111,7 +112,6 @@ export class CreateMeetingComponent implements OnInit {
             location:this.Location,
             purpose:this.purpose,
             authToken:this.authToken
-
           };
        
           this.service.createMeeting(data).subscribe(
@@ -122,7 +122,8 @@ export class CreateMeetingComponent implements OnInit {
              let details={
               adminName:this.adminName,
               userId:this.userId,
-              meetingId:this.meetingId
+              meetingId:this.meetingId,
+              title:this.title
           }
     this.socketService.emitCreateNotification(details);
              this.router.navigate(['/admindashboard',this.userId])
@@ -155,6 +156,11 @@ export class CreateMeetingComponent implements OnInit {
     //      )
     //   }
     //  //end send email notify
+
+    public goBack()
+{
+  this.location.back();
+}
 
 //logout code start
 public logout=()=>{

@@ -9,7 +9,7 @@
 
           <span class="navbar-toggler-icon"></span>
         </button>
-        <a class="navbar-brand"><img src="./../../../assets/images/logo.png" alt=""></a>
+        <a class="navbar-brand"><img src="./../../../assets/images/calendar-logo.png" alt=""></a>
 
         <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
           <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
@@ -20,7 +20,16 @@
               <a class="nav-link" [routerLink]="['/admindashboard',userId]">Dashboard</a>
             </li>
           </ul>
+          <div class="col-md-2" style="align-items:flex-end;">
+            <div class="admin">
+              <i class="fas fa-user" > {{adminName}}</i>
+            </div>
+          </div>
+         
+          <div class="col-md-1">
           <button class="btn btn-primary" (click)="logout()">logout</button>
+          </div>
+       
         </div>
       </nav>
     </div>
@@ -34,7 +43,7 @@
     <div class="col-md-8">
       <div class="card">
         <div class="card-header">
-          Edit or Delete Your Meeting
+          Update/Delete Your Meeting
         </div>
         <div class="card-body">
           <form>

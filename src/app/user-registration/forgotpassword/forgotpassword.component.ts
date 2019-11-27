@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-import { MeetingHttpService } from 'src/app/meeting-http.service';
 import { Router } from '@angular/router';
+import { UserHttpService } from 'src/app/user-http.service';
 
 @Component({
   selector: 'app-forgotpassword',
@@ -15,7 +15,7 @@ export class ForgotpasswordComponent implements OnInit {
   public resetPasswordToken: any;
   public password: any;
   //public signinloader: boolean;
-  constructor(public toastr: ToastrService, public service: MeetingHttpService, public router: Router) { }
+  constructor(public toastr: ToastrService, public service: UserHttpService, public router: Router) { }
 
   ngOnInit() {
   }

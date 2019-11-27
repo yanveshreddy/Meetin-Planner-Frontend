@@ -36,23 +36,20 @@ export class UpdateMeetingComponent implements OnInit {
     public _route:ActivatedRoute,
     private location:Location,
     private config:NgbDatepickerConfig) {
-   
+   //configuring Datepicker
+     const currentDate = new Date();
+      config.minDate = { year: currentDate.getFullYear(), month: currentDate.getMonth() + 1, day: currentDate.getDate() };
+      config.maxDate = { year: currentDate.getFullYear(), month: 12, day: 31 };
+      config.outsideDays = 'hidden';
+     
+   }
+
+  ngOnInit() {
     this.meetingId =this._route.snapshot.paramMap.get('meetingId');
     
     this.adminName=Cookie.get('userName');
     this.authToken=Cookie.get('authToken');
-    //configuring Datepicker
-    const currentDate = new Date();
-
-    config.minDate = { year: currentDate.getFullYear(), month: currentDate.getMonth() + 1, day: currentDate.getDate() };
-    config.maxDate = { year: currentDate.getFullYear(), month: 12, day: 31 };
-    config.outsideDays = 'hidden';
-   
     this.getSingleMeeting();
-   }
-
-  ngOnInit() {
-    
   }
   
 
@@ -68,7 +65,8 @@ export class UpdateMeetingComponent implements OnInit {
         this.endTime={hour:x.endHour,minute:x.endMinute}
         this.userId=x.userId
         this.title=x.title
-        this.adminName=x.adminName
+        console.log(x.adminUserName);
+        this.adminName=x.adminUserName
         this.meeting = data['data'];
       },
       err=>{
@@ -92,12 +90,20 @@ export class UpdateMeetingComponent implements OnInit {
      data=>{
     
       this.toastr.success(data.message);
+
       let details={
+
         adminName:this.adminName,
         userId:this.userId,
-        meetingId:this.meetingId
+        meetingId:this.meetingId,
+        title:this.title
     }
+    console.log(details);
+    
+    if(details){
       this.socketService.emitUpdateNotification(details);
+    }
+      
       
       setTimeout(()=>{
         this.router.navigate(['/admindashboard',this.userId]);

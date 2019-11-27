@@ -7,6 +7,7 @@ import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 // import { momentAdapterFactory } from '../app.module';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { MeetingViewComponent } from './meeting-view/meeting-view.component';
+import { UserRouteguardService } from './user-routeguard.service';
 
 @NgModule({
   declarations: [UserdashboardComponent, MeetingViewComponent],
@@ -18,9 +19,10 @@ import { MeetingViewComponent } from './meeting-view/meeting-view.component';
       useFactory: adapterFactory
     }),
     RouterModule.forChild([
-     { path:'userdashboard/:userId',component:UserdashboardComponent},
-     {path:'usermeetingview/:meetingId',component:MeetingViewComponent}
+     { path:'userdashboard/:userId',component:UserdashboardComponent,canActivate:[UserRouteguardService]},
+     {path:'usermeetingview/:meetingId',component:MeetingViewComponent,canActivate:[UserRouteguardService]}
     ])
-  ]
+  ],
+  providers:[UserRouteguardService]
 })
 export class UserModule { }

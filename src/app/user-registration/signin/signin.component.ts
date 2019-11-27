@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Cookie } from 'ng2-cookies/ng2-cookies';
 import { ToastrService } from 'ngx-toastr';
-import { MeetingHttpService } from 'src/app/meeting-http.service';
+import { UserHttpService } from 'src/app/user-http.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -13,10 +13,10 @@ export class SigninComponent implements OnInit {
 
   public email: any;
   public password: any;
-  public signuploader: boolean;
+ 
 
 
-  constructor(public toastr: ToastrService, public service: MeetingHttpService, public router: Router) { }
+  constructor(public toastr: ToastrService, public service: UserHttpService, public router: Router) { }
 
   ngOnInit() {
 
@@ -36,12 +36,12 @@ export class SigninComponent implements OnInit {
         email: this.email,
         password: this.password
       }
-     // this.signuploader = false;
+    
       this.service.signinfunction(postingdata).subscribe(
         result => {
 
           if (result.error == false) {
-            //this.signuploader = true;
+           
             console.log(result);
             this.toastr.success(result.message);
 
@@ -51,6 +51,8 @@ export class SigninComponent implements OnInit {
 
             Cookie.set('userName', result.data.userDetails.firstName + ' ' + result.data.userDetails.lastName);
 
+            this.service.setUserInfoInLocalStorage(result.data.userDetails);
+
             if (result.data.userDetails.isAdmin == true) {
               this.router.navigate(['/adminhome']);         
                }
@@ -59,7 +61,7 @@ export class SigninComponent implements OnInit {
             }
           }
           else {
-            this.signuploader = true;
+          
             this.toastr.error(result.message);
           }
         }, err => {

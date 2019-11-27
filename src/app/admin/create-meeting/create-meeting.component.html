@@ -9,18 +9,27 @@
 
           <span class="navbar-toggler-icon"></span>
         </button>
-        <a class="navbar-brand"><img src="./../../../assets/images/logo.png" alt=""></a>
+        <a class="navbar-brand"><img src="./../../../assets/images/calendar-logo.png" alt=""></a>
 
         <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
           <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
             <li class="nav-item">
-              <a class="nav-link" [routerLink]="['/home']">Admin Home</a>
+              <a class="nav-link" [routerLink]="['/adminhome']">Admin Home</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" [routerLink]="['/admindashboard',userId]">Dashboard</a>
             </li>
           </ul>
+          <div class="col-md-2" style="align-items:flex-end;">
+            <div class="admin">
+              <i class="fas fa-user" > {{adminName}}</i>
+            </div>
+          </div>
+         
+          <div class="col-md-1">
           <button class="btn btn-primary" (click)="logout()">logout</button>
+          </div>
+       
         </div>
       </nav>
     </div>
@@ -35,7 +44,7 @@
     <div class="col-md-8">
       <div class="card">
         <div class="card-header">
-          Plan Your Meeting
+          Schedule Meeting 
         </div>
         <div class="card-body">
           <form #createform="ngForm">
@@ -94,9 +103,12 @@
                 aria-describedby="emailHelp" placeholder="Title">
 
             </div>
-            <p class="loader" *ngIf="signuploader==false"></p>
+            <div class="flex-container">
             <button type="submit" class="btn btn-primary" [disabled]="!createform.valid"
               (click)="createevent()">Submit</button>
+              <div class="back"><button class="back1" (click)="goBack()"><i class="fas fa-arrow-left"></i>Back</button>
+              </div>
+            </div>
           </form>
 
         </div>

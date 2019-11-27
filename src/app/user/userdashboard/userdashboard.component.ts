@@ -97,7 +97,8 @@ export class UserdashboardComponent implements OnInit {
   public month;
   public day;
   public a = 11;
-  public username: string;
+  // public username: string;
+  public userList: any = [];
 
   view: CalendarView = CalendarView.Month;
 
@@ -116,7 +117,7 @@ export class UserdashboardComponent implements OnInit {
   
   constructor(public socketService:SocketService,public toastr: ToastrService,public service:MeetingHttpService,public _route: ActivatedRoute, public router: Router, private modal: NgbModal) {
     this.dateOrViewChanged();
-    this.username=Cookie.get('userName');
+    this.userName=Cookie.get('userName');
     this.userId=Cookie.get('userId');
     this.authToken=Cookie.get('authToken');
    }
@@ -243,7 +244,7 @@ export class UserdashboardComponent implements OnInit {
   public verifyUser=()=>{
     this.socketService.verifyUser().subscribe(
       data=>{
-        this.socketService.setUser(this.userId);
+        this.socketService.setUser(this.authToken);
       },
       err=>{
         this.toastr.error('some error occured')
@@ -257,44 +258,40 @@ export class UserdashboardComponent implements OnInit {
 public getonlineUsers=()=>{
   this.socketService.onlineUserList().subscribe(
     data=>{
-    },
+      this.userList = [];
+
+        for (let x in data) {
+
+          let temp = { 'userId': x, 'name': data[x], 'unread': 0, 'chatting': false };
+
+          this.userList.push(temp);          
+
+    }
     err=>{
       this.toastr.error('some error occured')
     }
-  )
+    })
 }
 //get online users code end
 
 
 //get editevent notification code start
  public geteditnotifiation=()=>{
-   this.socketService.listenToEditNotification(`${this.userId} edit`).subscribe(
-     data=>{
-       this.toastr.success(`${data.adminName} updated your Schedule`);
-     }
-   )
+   this.socketService.listenToEditNotification(`${this.userId}`);
  }
 //get editevent notification code end
 
 
 //get deleteevent notification code start
 public getdeletenotifiation=()=>{
-  this.socketService.listenToDeleteNotification(`${this.userId} delete`).subscribe(
-    data=>{
-      this.toastr.success(`${data.adminName} cancelled your Schedule`);
-    }
-  )
+  this.socketService.listenToDeleteNotification(`${this.userId}`);
 }
 //get editevent notification code end
 
 
 //get create event notification code start
 public getcreatenotifiation=()=>{
-  this.socketService.listenToCreateNotification(`${this.userId} create`).subscribe(
-    data=>{
-      this.toastr.success(`${data.adminName} created a schedule`);
-    }
-  )
+  this.socketService.listenToCreateNotification(`${this.userId}`);
 }
 //get create event notification code end
 

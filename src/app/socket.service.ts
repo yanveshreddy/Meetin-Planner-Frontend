@@ -1,21 +1,26 @@
 import { Injectable } from '@angular/core';
 
 import { HttpClient } from '@angular/common/http';
+import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 import io from 'socket.io-client';
 
+@Injectable()
 export class SocketService {
 
   public baseUrl: string;
   public socket: any;
-  constructor() {
-    this.baseUrl = 'http://13.233.44.251:4001';
+
+  constructor( public toastr:ToastrService) {
+    this.baseUrl = 'http://localhost:3000';
+   
     this.socket = io(this.baseUrl);
   }
 
 
   //verify and setuser code is called
   public verifyUser: any = () => {
+
     return Observable.create((observer) => {
       this.socket.on('verifyUser', (data) => {
         observer.next(data);
@@ -75,20 +80,20 @@ export class SocketService {
 
   //get create notify code start
   public listenToCreateNotification = (userId) => {
-    return Observable.create((observer) => {
 
-      this.socket.on(userId, (data) => {
-
-        observer.next(data)
+      this.socket.on(`${userId} create`, (data) => {
+        console.log(data);
+        this.toastr.show(`${data.adminName} scheduled new meeting with title:${data.title}`);
+      
       })
-    })
+    
 
   }
   //get create notify code end
 
   //add edit notify code start
   public emitUpdateNotification = (data) => {
-
+    //console.log(data);
     this.socket.emit('Update-Meeting', data);
   }
   //add edit notify code end
@@ -97,17 +102,24 @@ export class SocketService {
   //get edit code start
   public listenToEditNotification = (userId) => {
 
-    console.log(userId);
-    return Observable.create((observer) => {
-
-      this.socket.on(userId, (data) => {
-        observer.next(data)
+      this.socket.on(`${userId} update`, (data) => {
+        console.log(data);
+        this.toastr.show(`${data.adminName} updated your meeting with title:${data.title}`)
       })
-    })
+    
 
   }
   //get edit code end
 
+  public listenToAlarmNotification =(userId) =>{
+
+    this.socket.on('alarm', (data) => {
+      console.log(data);
+      this.toastr.warning(`your meeting ${data.title} created by ${data.adminName} will begin in ${data.minutes}`);
+
+    })
+
+  }
 
   //add edit notify code start
   public emitDeleteNotification = (data) => {
@@ -119,11 +131,12 @@ export class SocketService {
   //get delete code start
   public listenToDeleteNotification = (userId) => {
 
-    return Observable.create((observer) => {
-      this.socket.on(userId, (data) => {
-        observer.next(data)
+      this.socket.on(`${userId} delete`, (data) => {
+        console.log(data);
+        this.toastr.show(`${data.adminName} terminated your meeting with meetingId:${data.meetingId}`)
+        
       })
-    })
+  
 
   }
   //get delete code end

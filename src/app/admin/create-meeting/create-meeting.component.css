@@ -1,3 +1,12 @@
+@import "~@fortawesome/fontawesome-free/css/all.css";
+.navbar-brand {
+    padding: 0px;
+}
+.navbar-brand>img {
+    height: 100%;
+    padding: 10px;
+    width: auto;
+}
 img {
     width:50px;
 }
@@ -75,20 +84,19 @@ input {
 .btn-primary:hover {
     background-color:blue;
 }
-.loader {
+.back{
+    width:100%;
     text-align: center;
-    border-left:2px solid blue;
-    border-right:2px solid blue;
-    border-bottom:2px solid white;
-    border-top:2px solid white;
-    border-radius:30px;
-    width:30px;
-    margin-left:auto;
-    margin-right: auto;
-    height:30px;
-    animation:rotate 1s infinite linear;
-  }
+}
 
+.back1:hover {
+    background-color:navy;
+}
+.flex-container {
+    display: flex;
+   justify-content: space-around;
+
+  }
  @keyframes rotate {
   from {
     transform: rotate(0deg);
