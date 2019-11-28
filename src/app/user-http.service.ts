@@ -77,7 +77,7 @@ export class UserHttpService {
     //get all Users code start
     public getAllUsers = (authToken): any => {
   
-      return this.http.get(`${this.baseurl}/view/all?authToken=${this.authToken}`);
+      return this.http.get(`${this.baseurl}/view/all?authToken=${authToken}`);
       // return this.http.get(`${this.baseurl}/api/v1/users/view/all?authToken=${authToken}`);
       
     }

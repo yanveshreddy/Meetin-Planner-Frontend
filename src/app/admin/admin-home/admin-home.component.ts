@@ -78,7 +78,7 @@ public getonlineUsers=()=>{
    public getAllUsers=()=>{
      this.userService.getAllUsers(this.authToken).subscribe(
        data=>{
-         this.users=data.data;
+         this.users=data['data'];
        }
      )
    }
