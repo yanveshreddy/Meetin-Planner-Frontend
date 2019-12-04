@@ -12,7 +12,7 @@ export class MeetingHttpService {
 
   }
 
-  public baseurl = 'http://localhost:3000/api/v1/meetings';
+  public baseurl = 'http://api.artestapps.com/api/v1/meetings';
   public authToken = Cookie.get('authToken');
 
   //create meeting code start
