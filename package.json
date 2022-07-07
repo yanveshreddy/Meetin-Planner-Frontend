@@ -28,7 +28,7 @@
     "date-fns": "^2.8.1",
     "font-awesome": "^4.7.0",
     "jquery": "^3.4.1",
-    "moment": "^2.24.0",
+    "moment": "^2.29.4",
     "ng2-cookies": "^1.0.12",
     "ngx-pagination": "^4.1.0",
     "ngx-toastr": "^11.2.1",
